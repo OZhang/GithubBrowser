@@ -6,20 +6,25 @@ import {
   View
 } from 'react-native';
 var Login = require('./Login');
+var AuthService = require('./AuthService');
 
 //export default class GitHubBrowser extends Component {
 var GitHubBrowser = React.createClass({
-    // constructor(props){
-    //     super(props);
-    //     this.state={
-    //         isLoggedIn: false
-    //     }
-    // }
+
+    componentDidMount() {
+        AuthService.getAuthInfo((err, authInfo) =>{
+            this.setState({
+                checkingAuth: false,
+                isLoggedIn: authInfo != null
+            })
+        });
+    },
+
   render() {
     if (this.state.isLoggedIn){
       return(
-          <View>
-            <Text>
+          <View style={styles.container}>
+            <Text style={styles.welcome}>
               Logged in!
             </Text>
           </View>
@@ -43,6 +48,24 @@ var GitHubBrowser = React.createClass({
          isLoggedIn: false
        };
      }
+});
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: '#F5FCFF',
+    },
+    welcome: {
+        fontSize: 20,
+        textAlign: 'center',
+        margin: 10,
+    },
+    instructions: {
+        textAlign: 'center',
+        color: '#333333',
+        marginBottom: 5,
+    },
 });
 
 AppRegistry.registerComponent('GitHubBrowser', () => GitHubBrowser);
