@@ -6,7 +6,7 @@ const userKey = 'user';
 
 class AuthService {
     getAuthInfo(cb){
-        AsyncStorage.multiSet([authKey,userKey],(err,val)=>{
+        AsyncStorage.multiGet([authKey,userKey],(err,val)=>{
             if (err){
                 return cb(err)
             }
