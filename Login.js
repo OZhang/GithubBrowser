@@ -95,11 +95,13 @@ class Login extends Component{
                 </View>
                 <TextInput 
                     onChangeText={(text)=> this.setState({username:text})} 
-                    style={styles.input} 
+                    style={styles.input}
+                    underlineColorAndroid='transparent'
                     placeholder="Github username" />
                 <TextInput 
                     onChangeText={(text)=> this.setState({password:text})} 
-                    style={styles.input} 
+                    style={styles.input}
+                    underlineColorAndroid='transparent'
                     placeholder="Github password"
                     secureTextEntry={true} />
                 <TouchableHighlight style={styles.button}
