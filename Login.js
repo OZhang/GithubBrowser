@@ -1,6 +1,6 @@
 import React ,{Component} from 'react';
 import {
-    View, 
+    View,
     Text,
     StyleSheet,
     Image,
@@ -93,13 +93,13 @@ class Login extends Component{
                         Github browser
                     </Text>
                 </View>
-                <TextInput 
-                    onChangeText={(text)=> this.setState({username:text})} 
+                <TextInput
+                    onChangeText={(text)=> this.setState({username:text})}
                     style={styles.input}
                     underlineColorAndroid='transparent'
                     placeholder="Github username" />
-                <TextInput 
-                    onChangeText={(text)=> this.setState({password:text})} 
+                <TextInput
+                    onChangeText={(text)=> this.setState({password:text})}
                     style={styles.input}
                     underlineColorAndroid='transparent'
                     placeholder="Github password"
@@ -120,20 +120,19 @@ class Login extends Component{
         )
     }
 
-    onLinginPressed(){ 
+    onLinginPressed(){
         console.log('Attempting to log in with username ' + this.state.username);
         this.setState({showProgress:true});
         const authService = require('./AuthService');
          authService.login({
              username:this.state.username,
              password:this.state.password
-         }, (result) =>{
-             //this.setState({showProgress:false});
-                  this.setState(Object.assign({
-                  showProgress: false
-              }, result));
+         }, (results) =>{
+             this.setState(Object.assign({
+                 showProgress: false
+             }, results));
 
-            if (result.success && this.props.onLogin){
+            if (results.success && this.props.onLogin){
                  this.props.onLogin();
              }
          });
