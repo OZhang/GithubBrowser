@@ -36,9 +36,9 @@ let styles = StyleSheet.create({
         borderWidth:1,
         borderColor:'#48bbec',
         flexDirection: 'row',
-    justifyContent: 'center',
-    alignItems: 'center',
-    borderRadius: 5
+        justifyContent: 'center',
+        alignItems: 'center',
+        borderRadius: 5
     },
     button:{
         height:50,
@@ -47,7 +47,7 @@ let styles = StyleSheet.create({
         alignSelf: 'stretch',
         justifyContent:'center',
         borderRadius: 5
-        },
+    },
     buttonText:{
         fontSize:22,
         color:'#fff',
@@ -77,13 +77,13 @@ class Login extends Component{
             this.state.badCredentials){
             errorCtrl = <Text style={styles.error}>
                 That username and password combination did not work
-                </Text>
+            </Text>
         }
         if(!this.state.success &&
             this.state.unknownError){
             errorCtrl = <Text style={styles.error}>
                 We experienced an unexpected issue
-                </Text>
+            </Text>
         }
         return(
             <View style={styles.container}>
@@ -105,17 +105,17 @@ class Login extends Component{
                     placeholder="Github password"
                     secureTextEntry={true} />
                 <TouchableHighlight style={styles.button}
-                        onPress={this.onLinginPressed.bind(this)}>
-                        <Text style={styles.buttonText}>
-                            Log in
-                        </Text>
+                                    onPress={this.onLinginPressed.bind(this)}>
+                    <Text style={styles.buttonText}>
+                        Log in
+                    </Text>
                 </TouchableHighlight>
                 {errorCtrl}
 
-                 <ActivityIndicator animating={this.state.showProgress}
-                    size="large"
-                    style={styles.loader}>
-                    </ActivityIndicator>
+                <ActivityIndicator animating={this.state.showProgress}
+                                   size="large"
+                                   style={styles.loader}>
+                </ActivityIndicator>
             </View>
         )
     }
@@ -124,18 +124,18 @@ class Login extends Component{
         console.log('Attempting to log in with username ' + this.state.username);
         this.setState({showProgress:true});
         const authService = require('./AuthService');
-         authService.login({
-             username:this.state.username,
-             password:this.state.password
-         }, (results) =>{
-             this.setState(Object.assign({
-                 showProgress: false
-             }, results));
+        authService.login({
+            username:this.state.username,
+            password:this.state.password
+        }, (results) =>{
+            this.setState(Object.assign({
+                showProgress: false
+            }, results));
 
             if (results.success && this.props.onLogin){
-                 this.props.onLogin();
-             }
-         });
+                this.props.onLogin();
+            }
+        });
     }
 }
 

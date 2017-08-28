@@ -40,13 +40,13 @@ class AuthService {
             })
             .then((results) => {
                 AsyncStorage.multiSet([
-                    [authKey, encodedAuth],
+                   [authKey, encodedAuth],
                     [userKey, JSON.stringify(results)],
-                    (err) => {
-                        if (err){
-                            throw err;
-                        }
-                    }
+                    // (err) => {
+                    //     if (err){
+                    //         throw err;
+                    //     }
+                    // }
                 ]);
                 return cb({success: true});
             })

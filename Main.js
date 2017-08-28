@@ -6,6 +6,7 @@ import {
     View
 } from 'react-native';
 var Login = require('./Login');
+var AppContainer = require('./AppContainer');
 var authService = require('./AuthService');
 
 class Main extends Component{
@@ -18,15 +19,14 @@ class Main extends Component{
     /*constructor(props){
         super(props);
         this.state={
-
             checkingAuth: true
         }
     }*/
     componentDidMount() {
-        authService.getAuthInfo((err, authInfo) =>{
+        authService.getAuthInfo((err, authInfo)=> {
             this.setState({
                 checkingAuth: false,
-                isLoggedIn: authInfo != null
+                isLoggedIn: authInfo == null
             })
         });
     }
@@ -34,11 +34,7 @@ class Main extends Component{
     render() {
         if (this.state.isLoggedIn){
             return(
-                <View style={styles.container}>
-                    <Text style={styles.welcome}>
-                        Logged in!
-                    </Text>
-                </View>
+                <AppContainer />
 
             )
         }
